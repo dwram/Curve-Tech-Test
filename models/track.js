@@ -6,6 +6,6 @@ const trackSchema = new Schema({
     arist: String,
     isrc: { type: String, required: true},
     pLine: String,
-    aliases: Array,
+    aliases: [String],
     contractId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 })
