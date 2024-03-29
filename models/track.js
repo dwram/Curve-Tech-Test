@@ -1,4 +1,4 @@
-const { Schema, Model } = require('mongoose')
+import mongoose, { Schema, Model } from 'mongoose'
 
 const trackSchema = new Schema({
     title: { type: String, required: true },
@@ -7,5 +7,15 @@ const trackSchema = new Schema({
     isrc: { type: String, required: true},
     pLine: String,
     aliases: [String],
-    contractId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+    contractId: { type: Schema.Types.ObjectId, ref: 'Contract', required: true }
 })
+
+trackSchema.pre('save', (next) => {
+    if(typeof this.aliases === 'string') {
+        this.aliases = this.aliases.split(';').map(alias => alias.trim())
+    }
+})
+
+const Track = mongoose.model('Track', trackSchema)
+
+export default Track

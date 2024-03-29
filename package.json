@@ -1,5 +1,14 @@
 {
   "dependencies": {
-    "mongoose": "^8.2.4"
+    "mongoose": "^8.2.4",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "chai": "^5.1.0",
+    "mocha": "^10.4.0"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "mocha \"test/**/*.test.js\""
   }
 }
