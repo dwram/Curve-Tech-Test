@@ -1,4 +1,4 @@
-import mongoose, { Schema, Model } from 'mongoose'
+import mongoose, { Schema } from 'mongoose'
 
 const trackSchema = new Schema({
     title: { type: String, required: true },

@@ -11,6 +11,8 @@ async function establishConnection() {
 
 }
 
-const close = mongoose.close
+async function closeConnection() {
+    await mongoose.close()
+}
 
-export { establishConnection, close }
+export { establishConnection, closeConnection }
