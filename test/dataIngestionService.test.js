@@ -45,27 +45,27 @@ describe('Data Ingestion Service validation', () => {
 
     it('Validation should return an error when using a title that is not of type string', () => {
         mockTrack.title = 123
-        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Field title when using value 123 is not a string, it is of type number')
+        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Field title with value 123 is not a string, it is of type number')
     })
 
     it('Validation should return an error when using a version that is not of type string', () => {
         mockTrack.version = 1
-        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Field version when using value 1 is not a string, it is of type number')
+        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Field version with value 1 is not a string, it is of type number')
     })
 
     it('Validation should return an error when using an artist that is not of type string', () => {
         mockTrack.version = ["mahatma ghandi"]
-        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Field version when using value mahatma ghandi is not a string, it is of type object')
+        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Field version with value mahatma ghandi is not a string, it is of type object')
     })
 
     it('Validation should return an error when using an isrc that is not of type string', () => {
         mockTrack.isrc = { code: "US-S1Z-99-00001" }
-        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Field isrc when using value [object Object] is not a string, it is of type object')
+        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Field isrc with value [object Object] is not a string, it is of type object')
     })
     
     it('Validation should return an error when using a p line that is not of type string', () => {
         mockTrack.pLine = 1
-        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Field pLine when using value 1 is not a string, it is of type number')
+        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Field pLine with value 1 is not a string, it is of type number')
     })
 
     it('Validation should return an error when using an array with any element that is not of type string', () => {

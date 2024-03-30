@@ -33,6 +33,7 @@ Alternatively, you can provide a CLI argument when executing the application.
 
 At CurveTask root directory: 
 1. Install dependencies via `npm install`
+2. Ensure MongoDB is running via `mongod --dbpath PATH-TO-YOUR-/data-folder`
 2. Run the application using `node main` 
     2a.Optional: Add path to xlsx file. This will take priority.
     2b. Optional: Add environment variable for MONGODB_DATABASE_URI or DATA_FILE_PATH
