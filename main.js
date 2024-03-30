@@ -11,7 +11,7 @@ async function main() {
         establishConnection()
         const dataFilePath = process.env.DATA_FILE_PATH || process.argv[2] || `test/mockData/Track Import Test.xlsx` || null
         const ingestedTrackDataJson = DataIngestionService.readXlsxFileToJson(dataFilePath)
-        await DataStorageService.saveContract({ name: "Contract 3" })
+        await DataStorageService.saveContract({ name: "Contract 1" })
         for( const rowOfTrackData of ingestedTrackDataJson) {
             await DataStorageService.saveTrack(rowOfTrackData)  
         }
