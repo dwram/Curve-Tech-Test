@@ -12,7 +12,12 @@ async function establishConnection() {
 }
 
 async function closeConnection() {
-    await mongoose.close()
+    try {
+        await mongoose.connection.close()
+    } catch (err) {
+        console.error(err)
+    }
+
 }
 
 export { establishConnection, closeConnection }

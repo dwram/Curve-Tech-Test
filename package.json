@@ -9,6 +9,6 @@
   },
   "type": "module",
   "scripts": {
-    "test": "mocha \"test/**/*.test.js\""
+    "test": "mocha --file \".test/testSetup.js\" \"test/**/*.test.js\" --exit"
   }
 }

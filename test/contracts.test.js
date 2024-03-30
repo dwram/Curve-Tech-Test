@@ -2,22 +2,18 @@ import { establishConnection, closeConnection } from "../config/mongoDbConnectio
 import { expect } from 'chai'
 import Contract from '../models/contract.js'
 
-before(() => {
-    establishConnection();
-});
 
 after(async () => {
     await Contract.deleteMany({})
-    closeConnection();
 })
 
 describe("Contract creation", () => {
 
-    const newContract = new Contract({ name: 'Contract 1'})
-
-    it("Should create contract successfully", () => {
-        newContract.save().then((newDocument) => {
-            expect(newDocument.isNew).to.be.false
+    it("Should create contract successfully", async () => {
+        const newContract = new Contract({ name: 'Contract 1'})
+        await newContract.save().then((newContractDocument) => {
+            expect(newContractDocument.isNew).to.be.false
+            expect(newContractDocument.name).to.equal('Contract 1')
         })
     })
 
