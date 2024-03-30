@@ -31,7 +31,12 @@ Alternatively, you can provide a CLI argument when executing the application.
 
 ## How to run
 
-At CurveTask root directory: node main
+At CurveTask root directory: 
+1. Install dependencies via `npm install`
+2. Run the application using `node main` 
+    2a.Optional: Add path to xlsx file. This will take priority.
+    2b. Optional: Add environment variable for MONGODB_DATABASE_URI or DATA_FILE_PATH
+
 
 ## How to run tests
 
