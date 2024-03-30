@@ -36,7 +36,7 @@ At CurveTask root directory:
 2. Ensure MongoDB is running via `mongod --dbpath PATH-TO-YOUR-/data-folder`
 3. Run the application using `node main` 
 
-3a.Optional: Add path to xlsx file. This will take priority.
+3a. Optional: Add path to xlsx file. This will take priority.  
 3b. Optional: Add environment variable for MONGODB_DATABASE_URI or DATA_FILE_PATH
 
 
