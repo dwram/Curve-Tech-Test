@@ -19,7 +19,7 @@ let mockTrack = {
 
 
 
-describe('Contract save', () => {
+describe('Data Storage Service: Contract save', () => {
     
     beforeEach(async () => {
         await Contract.deleteMany({})
@@ -31,14 +31,14 @@ describe('Contract save', () => {
         expect(result.name).to.equal('Contract 2')
     })
 
-    it('Should throw error and not save contract without name value', async () => {
+    it('Should return error and not save contract without name value', async () => {
         const result = await DataStorageService.saveContract()
         expect(result.message).to.equal('A name property must be present on the object')      
     })
 
 })
 
-describe('Track Save', () => {
+describe('Data Storage Service: Track Save', () => {
 
     beforeEach(async () => {
         await Contract.deleteMany({})
@@ -62,7 +62,7 @@ describe('Track Save', () => {
         expect(result.toObject().contractId.toString()).to.equal(savedContract._id.toString())
     })
 
-    it('Should throw error and not save Track if a contract property exists on the data object, but the contract does not exist in the contract collection', async () => { 
+    it('Should return error and not save Track if a contract property exists on the data object, but the contract does not exist in the contract collection', async () => { 
         const result = await DataStorageService.saveTrack({...mockTrack, contract: "Contract 4"})
         expect(result.message).to.equal(`The specified contract named "Contract 4" cannot be found in the contract collection`)     
     })

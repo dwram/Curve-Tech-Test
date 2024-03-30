@@ -4,8 +4,6 @@ import DataIngestionService from "./dataIngestionService.js"
 import DataStorageService from "./dataStorageService.js"
 import customErrorHandler from "./utils/errorHandler.js"
 
-const errors = []
-
 async function main() {
 
     try {
@@ -17,14 +15,13 @@ async function main() {
             await DataStorageService.saveTrack(rowOfTrackData)  
         }
     } catch (error) {
-        errors.push(error)
+        new customErrorHandler(error)
     } finally {
         closeConnection()
-    }
-
-    console.log('Printing errors...\n')
-    for(const [index, error] of customErrorHandler.getAllErrors().entries()) {
-        console.error(`Error #${index+1}:`, error)
+        console.log('Printing errors...\n')
+        for(const [index, error] of customErrorHandler.getAllErrors().entries()) {
+            console.error(`Error #${index+1}:`, error)
+        }
     }
  
 }

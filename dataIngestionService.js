@@ -44,7 +44,7 @@ class DataIngestionService {
         const workbook = XLSX.readFile(filePath)
         const sheetName = workbook.SheetNames[0]
         const workSheet = workbook.Sheets[sheetName]
-        const data = XLSX.utils.sheet_to_json(workSheet, { defval: ""})
+        
         return XLSX.utils.sheet_to_json(workSheet, { defval: ""})
         .map((row, index) => Object.keys(row).reduce((object, field) => {
             let fieldValue = row[field]
