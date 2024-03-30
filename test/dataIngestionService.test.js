@@ -1,4 +1,4 @@
-import DataIngestionService from "../dataIngestionService.js";
+import DataIngestionService from "../utils/dataIngestionService.js";
 import { expect } from "chai";
 const mockDataFilePath = `test/mockData/Track Import Test.xlsx`
 

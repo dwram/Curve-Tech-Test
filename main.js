@@ -1,7 +1,7 @@
 
 import { closeConnection, establishConnection } from "./config/mongoDbConnection.js"
-import DataIngestionService from "./dataIngestionService.js"
-import DataStorageService from "./dataStorageService.js"
+import DataIngestionService from "./utils/dataIngestionService.js"
+import DataStorageService from "./utils/dataStorageService.js"
 import customErrorHandler from "./utils/errorHandler.js"
 
 async function main() {

@@ -1,6 +1,6 @@
-import customErrorHandler from "./utils/errorHandler.js";
-import Contract from "./models/contract.js";
-import Track from "./models/track.js";
+import customErrorHandler from "./errorHandler.js";
+import Contract from "../models/contract.js";
+import Track from "../models/track.js";
 
 class DataStorageService {
 

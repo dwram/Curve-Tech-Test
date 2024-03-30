@@ -1,7 +1,6 @@
-import { establishConnection, closeConnection } from "../config/mongoDbConnection.js"
 import { expect } from 'chai'
 import Contract from "../models/contract.js"
-import DataStorageService from "../dataStorageService.js"
+import DataStorageService from "../utils/dataStorageService.js"
 import Track from "../models/track.js"
 
 

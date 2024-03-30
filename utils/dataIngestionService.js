@@ -1,5 +1,5 @@
 import XLSX from 'xlsx';
-import customErrorHandler from './utils/errorHandler.js';
+import customErrorHandler from './errorHandler.js';
 
 
 class DataIngestionService {
