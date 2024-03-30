@@ -2,6 +2,7 @@
 import { closeConnection, establishConnection } from "./config/mongoDbConnection.js"
 import DataIngestionService from "./dataIngestionService.js"
 import DataStorageService from "./dataStorageService.js"
+import customErrorHandler from "./utils/errorHandler.js"
 
 const errors = []
 
@@ -21,7 +22,10 @@ async function main() {
         closeConnection()
     }
 
-    console.log(`Errors:`, errors)
+    console.log('Printing errors...\n')
+    for(const [index, error] of customErrorHandler.getAllErrors().entries()) {
+        console.error(`Error #${index+1}:`, error)
+    }
  
 }
 

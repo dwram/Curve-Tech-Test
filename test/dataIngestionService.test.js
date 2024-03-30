@@ -25,94 +25,52 @@ describe('Data Ingestion Service validation', () => {
     })
 
     it('Should successfully validate a track with a title (string), version (string), artist (string), isrc (string), p line (string) and alias ([]string)', () => {
-        expect(DataIngestionService.hasValidProperties(mockTrack)).to.equal(true)
+        expect(DataIngestionService.isTrackRowValid(mockTrack)).to.equal(true)
     })
 
     it('Should successfully validate if an object is provided with the minimum required title and isrc', () => {
-        expect(DataIngestionService.hasValidProperties({ title: mockTrack.title, isrc: mockTrack.isrc })).to.equal(true)
+        expect(DataIngestionService.isTrackRowValid({ title: mockTrack.title, isrc: mockTrack.isrc })).to.equal(true)
     })
 
 
     it('Should return false if the title is missing', () => {
         delete mockTrack.title
-        try {
-            throw DataIngestionService.hasValidProperties(mockTrack)
-        } catch(error) {
-            expect(error.message.trim()).to.include('Please make sure you have a title and isrc property')
-        }
+            expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Required "title" and "isrc" property is missing')
     })
 
     it('Should return false if the isrc is missing', () => {
         delete mockTrack.isrc
-        try {
-            throw DataIngestionService.hasValidProperties(mockTrack)
-        } catch(error) {
-            expect(error.message).to.include('Please make sure you have a title and isrc property')
-        }
+        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Required "title" and "isrc" property is missing')
     })
 
     it('Validation should return false with a title that is not of type string', () => {
         mockTrack.title = 123
-        try {
-            DataIngestionService.hasValidProperties(mockTrack)
-            expect.fail('Expected error was not thrown')
-        } catch(error) {
-            expect(error.message).to.include('Field title with value 123 is not a string, it is of type number')
-        }
+        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Field title with value 123 is not a string, it is of type number')
     })
 
     it('Validation should return false with a version that is not of type string', () => {
         mockTrack.version = 1
-        try {
-            DataIngestionService.hasValidProperties(mockTrack)
-            expect.fail('Expected error was not thrown')
-        } catch(error) {
-            expect(error.message).to.include('Field version with value 1 is not a string, it is of type number')
-        }
+        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Field version with value 1 is not a string, it is of type number')
     })
 
     it('Validation should return false with a artist that is not of type string', () => {
         mockTrack.version = ["mahatma ghandi"]
-        try {
-            DataIngestionService.hasValidProperties(mockTrack)
-            expect.fail('Expected error was not thrown')
-        } catch(error) {
-            expect(error.message).to.include('Field version with value mahatma ghandi is not a string, it is of type object')
-        }
+        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Field version with value mahatma ghandi is not a string, it is of type object')
     })
 
     it('Validation should return false with an isrc that is not of type string', () => {
         mockTrack.isrc = { code: "US-S1Z-99-00001" }
-        try {
-            DataIngestionService.hasValidProperties(mockTrack)
-            expect.fail('Expected error was not thrown')
-        } catch(error) {
-            expect(error.message).to.include('Field isrc with value [object Object] is not a string, it is of type object')
-        }
-
+        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Field isrc with value [object Object] is not a string, it is of type object')
     })
     
     it('Validation should return false with a p line that is not of type string', () => {
         mockTrack.pLine = 1
-        try {
-            DataIngestionService.hasValidProperties(mockTrack)
-            expect.fail('Expected error was not thrown')
-        } catch(error) {
-            expect(error.message).to.include('Field pLine with value 1 is not a string, it is of type number')
-        }
-
+        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Field pLine with value 1 is not a string, it is of type number')
     })
 
     it('Validation should return false with an array with any element that is not of type string', () => {
         mockTrack.aliases = ["aliases1", "alaises2", 1]
-
-        try {
-            DataIngestionService.hasValidProperties(mockTrack)
-            expect.fail('Expected error was not thrown')
-        } catch(error) {
-            expect(error.message).to.include('Please check aliases. The value must be an array containing elements of strings')        
-        }
-
+        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Please check aliases. The value must be an array containing elements of strings')        
     })
 
 })

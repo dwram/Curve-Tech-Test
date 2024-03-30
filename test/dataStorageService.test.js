@@ -21,7 +21,7 @@ let mockTrack = {
 
 describe('Contract save', () => {
     
-    afterEach(async () => {
+    beforeEach(async () => {
         await Contract.deleteMany({})
     })
     
@@ -32,19 +32,15 @@ describe('Contract save', () => {
     })
 
     it('Should throw error and not save contract without name value', async () => {
-        try {
-            await DataStorageService.saveContract()
-            expect.fail('Expected error was not thrown') 
-        } catch (error) {
-            expect(error.message).to.equal('You must provide an object with a name property')
-        }       
+        const result = await DataStorageService.saveContract()
+        expect(result.message).to.equal('A name property must be present on the object')      
     })
 
 })
 
 describe('Track Save', () => {
 
-    afterEach(async () => {
+    beforeEach(async () => {
         await Contract.deleteMany({})
         await Track.deleteMany({})
     })
@@ -66,15 +62,9 @@ describe('Track Save', () => {
         expect(result.toObject().contractId.toString()).to.equal(savedContract._id.toString())
     })
 
-    it('Should throw error and not save Track if a contract property exists on the data object, but the contract does not exist in the contract collection', async () => {
-        
-        try {
-            await DataStorageService.saveTrack({...mockTrack, contract: "Contract 4"})
-            expect.fail('Expected error was not thrown') 
-        } catch (error) {
-            expect(error.message).to.equal(`The specified contract named "Contract 4" cannot be found in the contract collection`)
-        }       
-        
+    it('Should throw error and not save Track if a contract property exists on the data object, but the contract does not exist in the contract collection', async () => { 
+        const result = await DataStorageService.saveTrack({...mockTrack, contract: "Contract 4"})
+        expect(result.message).to.equal(`The specified contract named "Contract 4" cannot be found in the contract collection`)     
     })
 
 
