@@ -35,7 +35,7 @@ describe('Data Ingestion Service validation', () => {
 
     it('Should return an error if the title is missing', () => {
         delete mockTrack.title
-            expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Required "title" and "isrc" property is missing')
+        expect(DataIngestionService.isTrackRowValid(mockTrack).message).to.include('Required "title" and "isrc" property is missing')
     })
 
     it('Should return an error if the isrc is missing', () => {
