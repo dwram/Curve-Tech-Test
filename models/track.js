@@ -1,5 +1,4 @@
 import mongoose, { Schema } from 'mongoose'
-import Contract from '../models/contract.js'
 
 const trackSchema = new Schema({
     title: { type: String, required: true },
@@ -12,11 +11,11 @@ const trackSchema = new Schema({
 })
 
 trackSchema.pre('save', async function(next) {  
-
     if(typeof this.aliases === 'string') {
         this.aliases = this.aliases.split(';').map(alias => alias.trim())
-    }
-    
+    } else if(Array.isArray(this.aliases) && typeof this.aliases[0] === 'string') {
+        this.aliases = this.aliases.reduce((array, element) => array.concat(element.split(';')), [])   
+    }   
     next()
 
 })
