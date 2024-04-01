@@ -8,7 +8,7 @@ describe('CustomErrorHandler', () => {
     const errors = customErrorHandler.getAllErrors()
 
     it('It returns a customErrorHandler instance upon instantiation', () => {
-        expect(newError.constructor.name).to.equal(customErrorHandler.name)
+        expect(newError).to.be.instanceOf(customErrorHandler)
     })
     
     it('It is a child of the Error superclass', () => {
